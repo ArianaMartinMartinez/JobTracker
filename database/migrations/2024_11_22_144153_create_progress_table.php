@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('progress', function (Blueprint $table) {
             $table->id();
-            $table->text('comentary');
+            $table->text('comment');
             $table->unsignedBigInteger('id_offer');
             $table->timestamps();
         });
