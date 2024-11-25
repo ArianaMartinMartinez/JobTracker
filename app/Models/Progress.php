@@ -16,6 +16,6 @@ class Progress extends Model
     ];
 
     public function offer(): BelongsTo {
-        return $this->belongsTo(Offer::class);
+        return $this->belongsTo(Offer::class, 'id_offer');
     }
 }
