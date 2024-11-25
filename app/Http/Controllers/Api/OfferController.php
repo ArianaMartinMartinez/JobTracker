@@ -39,7 +39,7 @@ class OfferController extends Controller
      */
     public function show(string $id)
     {
-        $offer = Offer::with('progress')->find($id);
+        $offer = Offer::with('progresses')->findOrFail($id);
         return response()->json($offer, 200);
     }
 
