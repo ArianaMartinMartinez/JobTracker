@@ -16,6 +16,8 @@ return new class extends Migration
             $table->text('comment');
             $table->unsignedBigInteger('id_offer');
             $table->timestamps();
+
+            $table->foreign('id_offer')->references('id')->on('offers')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
