@@ -20,4 +20,8 @@ class Offer extends Model
     public function progresses(): HasMany {
         return $this->hasMany(Progress::class, 'id_offer');
     }
+
+    public function lastestProgress() {
+        return $this->hasOne(Progress::class, 'id_offer')->latestOfMany();
+    }
 }
