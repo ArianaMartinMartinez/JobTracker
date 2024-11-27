@@ -3,9 +3,11 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: 100px;
     padding: 1rem;
     margin-bottom: 1rem;
+    text-align: center;
 
     font-family: "Funnel Display", sans-serif;
     font-optical-sizing: auto;
