@@ -6,6 +6,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Date</th>
+                <th scope="col">Last Update</th>
                 <th scope="col">Title</th>
                 <th scope="col">Company</th>
                 <th scope="col">URL</th>
@@ -18,6 +19,7 @@
                 <tr>
                     <td>{{ $offer->id }}</td>
                     <td>{{ $offer->created_at }}</td>
+                    <td>{{ $offer->lastestProgress->updated_at ?? "There's no progress yet" }}</td>
                     <td>{{ $offer->title }}</td>
                     <td>{{ $offer->company }}</td>
                     <td>
