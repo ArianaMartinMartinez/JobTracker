@@ -1,0 +1,26 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.offerInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 200px;
+    margin: 1.3rem;
+}
+
+
+.offerInfo > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.offerProgress {
+    width: 100%;
+}

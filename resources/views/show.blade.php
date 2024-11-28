@@ -14,12 +14,12 @@
     </div>
 
     <div class="offerProgress">
-        <table class="table table-bordered">
+        <table class="table table-bordered container" id="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Comment</th>
+                    <th scope="col" id="headerTable">#</th>
+                    <th scope="col" id="headerTable">Date</th>
+                    <th scope="col" id="headerTable">Comment</th>
                 </tr>
             </thead>
             <tbody>
