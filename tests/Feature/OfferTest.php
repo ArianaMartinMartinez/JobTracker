@@ -11,7 +11,7 @@ class OfferTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_CheckIfCanReceiveAllOffersInJsonFile() {
+    public function test_CheckIfCanReceiveAllOffersInView() {
        $this->withoutExceptionHandling();
 
        Offer::all();
@@ -22,7 +22,7 @@ class OfferTest extends TestCase
             ->assertViewIs('home');
     }
 
-    public function test_CheckIfCanReceiveOnOfferInJsonFile() {
+    public function test_CheckIfCanReceiveOnOfferInView() {
         $this->withoutExceptionHandling();
 
         $offer = Offer::factory()->create([
