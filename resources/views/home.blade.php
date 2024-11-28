@@ -1,23 +1,23 @@
 @extends('layout.app')
 
 @section('content')
-    <table class="table table-bordered">
+    <table class="table table-bordered container" id="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Date</th>
-                <th scope="col">Last Update</th>
-                <th scope="col">Title</th>
-                <th scope="col">Company</th>
-                <th scope="col">URL</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
+                <th scope="col" id="headerTable">#</th>
+                <th scope="col" id="headerTable">Date</th>
+                <th scope="col" id="headerTable">Last Update</th>
+                <th scope="col" id="headerTable">Title</th>
+                <th scope="col" id="headerTable">Company</th>
+                <th scope="col" id="headerTable">URL</th>
+                <th scope="col" id="headerTable">Status</th>
+                <th scope="col" id="headerTable">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($offers as $offer)
                 <tr>
-                    <td>{{ $offer->id }}</td>
+                    <th>{{ $offer->id }}</th>
                     <td>{{ $offer->created_at }}</td>
                     <td>{{ $offer->lastestProgress->updated_at ?? "There's no progress yet" }}</td>
                     <td>{{ $offer->title }}</td>
@@ -27,7 +27,9 @@
                     </td>
                     <td>{{ $offer->status }}</td>
                     <td>
-                        <a href="{{ route('showDetail', ['id' => $offer->id]) }}" class="btn btn-info">Details</a>
+                        <a href="{{ route('showDetail', ['id' => $offer->id]) }}">
+                            <button type="button" class="btn btn-warning">Details</button>
+                        </a>
                     </td>
                 </tr>
             @endforeach
