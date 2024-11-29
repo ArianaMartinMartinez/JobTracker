@@ -23,9 +23,8 @@ class ProgressTest extends TestCase
 
     public function test_CheckIfCanReceiveOneProgressInJsonFile() {
         $offer = Offer::factory(1)->create();
-        $progress = $this->post(route('apiStoreProgress'),[
-            'comment' => 'Esto es un progreso de ejemplo',
-            'id_offer' => 1,
+        $progress = $this->post(route('apiStoreProgress', 1),[
+            'comment' => ['Esto es un progreso de ejemplo'],
         ]);
 
         $data = ['comment' => 'Esto es un progreso de ejemplo'];
@@ -37,22 +36,34 @@ class ProgressTest extends TestCase
 
     public function test_ChecKIfCanCreateNewProgressWithApi() {
         $offer = Offer::factory(1)->create();
-        $response = $this->post(route('apiStoreProgress'), [
-            'comment' => 'Esto es un progreso de ejemplo',
-            'id_offer' => 1,
+        $response = $this->post(route('apiStoreProgress', 1), [
+            'comment' => ['Esto es un progreso de ejemplo'],
         ]);
+        $data = ['comment' => 'Esto es un progreso de ejemplo'];
 
         $response = $this->get(route('apiHomeProgresses'));
         $response->assertStatus(200)
-            ->assertJsonCount(1);
+            ->assertJsonCount(1)
+            ->assertJsonFragment($data);
+    }
+
+    public function test_CheckIfTryCreateNewProgressInNonexistentOfferWithApi() {
+        $offer = Offer::factory(1)->create();
+        $response = $this->post(route('apiStoreProgress', 40), [
+            'comment' => ['Esto debería fallar'],
+        ]);
+        $data = ['The offer where you want to insert progress does not exists'];
+
+        $response->assertStatus(404)
+            ->assertJsonCount(1)
+            ->assertJsonFragment($data);
     }
 
     public function test_CheckIfCanUpdateProgressWithApi() {
         $offer = Offer::factory(1)->create();
-        $response = $this->post(route('apiStoreProgress', [
-            'comment' => 'Esto es un progreso de ejemplo',
-            'id_offer' => 1,
-        ]));
+        $response = $this->post(route('apiStoreProgress', 1), [
+            'comment' => ['Esto es un progreso de ejemplo'],
+        ]);
         $data = ['comment' => 'Esto es un progreso de ejemplo'];
 
         $response = $this->get(route('apiHomeProgresses'));
