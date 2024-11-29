@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\Offer;
 use App\Models\Progress;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProgressController extends Controller
 {
@@ -20,16 +21,32 @@ class ProgressController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, string $offerId)
     {
-        $progress = Progress::create([
-            'comment' => $request->comment,
-            'id_offer' => $request->id_offer,
+        $validated = $request->validate([
+            'comment' => 'required | array',
         ]);
+        
+        $offer = Offer::find($offerId);
+        if(!$offer) {
+            return response()->json([
+                'message' => 'The offer where you want to insert progress does not exists',
+            ], 404);
+        }
 
-        $progress->save();
+        $progressData = collect($validated['comment'])->map(function($commentItem) use ($offer) {
+            return [
+                'comment' => $commentItem,
+                'id_offer' => $offer->id,
+            ];
+        });
 
-        return response()->json($progress, 200);
+        $offer->progresses()->createMany($progressData);
+
+        return response()->json([
+            'message' => 'Progress added',
+            'offer' => $offer->load('progresses'),
+        ]);
     }
 
     /**

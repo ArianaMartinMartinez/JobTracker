@@ -13,6 +13,6 @@ Route::delete('/offers/{id}', [OfferController::class, 'destroy'])->name('apiDes
 
 Route::get('/progresses', [ProgressController::class, 'index'])->name('apiHomeProgresses');
 Route::get('/progresses/{id}', [ProgressController::class, 'show'])->name('apiShowProgress');
-Route::post('/progresses', [ProgressController::class, 'store'])->name('apiStoreProgress');
+Route::post('/offers/{id}/progresses', [ProgressController::class, 'store'])->name('apiStoreProgress');
 Route::put('/progresses/{id}', [ProgressController::class, 'update'])->name('apiUpdateProgress');
 Route::delete('/progresses/{id}', [ProgressController::class, 'destroy'])->name('apiDestroyProgress');
