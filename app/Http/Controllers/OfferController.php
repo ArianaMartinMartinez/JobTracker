@@ -19,6 +19,38 @@ class OfferController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('createOffer');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'company' => 'required',
+            'url' => 'required',
+            'status' => 'required',
+        ]);
+
+        $offer = Offer::create([
+            'title' => $request->title,
+            'company' => $request->company,
+            'url' => $request->url,
+            'status' => $request->status == 'progress' ? 'In progress' : $request->status,
+        ]);
+
+        $offer->save();
+
+        return redirect()->route('home');
+    }
+
+    /**
      * Display the specified resource.
      */
     public function show(string $id)

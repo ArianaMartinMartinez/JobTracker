@@ -1,6 +1,10 @@
 @extends('layout.app')
 
 @section('content')
+    <a href="{{ route('createOffer') }}" class="mb-3">
+        <button type="button" class="btn btn-success">Create new offer</button>
+    </a>
+
     <table class="table table-bordered container" id="table">
         <thead>
             <tr>
