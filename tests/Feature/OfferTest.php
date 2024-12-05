@@ -38,4 +38,24 @@ class OfferTest extends TestCase
             ->assertViewIs('show')
             ->assertViewHas('offer', $offer);
     }
+
+    public function test_CheckIfCanCreateNewOfferInView() {
+        $this->withoutExceptionHandling();
+
+        $response = $this->get(route('createOffer'));
+        $response->assertStatus(200)
+            ->assertViewIs('createOffer');
+        
+        $response = $this->post(route('storeOffer'), [
+            'title' => 'Título de ejemplo de web',
+            'company' => 'Compañía de ejemplo de web',
+            'url' => 'https://github.com/ArianaMartinMartinez',
+            'status' => 'progress',
+        ]);
+
+        $this->assertDatabaseCount('offers', 1);
+
+        $response->assertStatus(302)
+            ->assertRedirectToRoute('home');
+    }
 }
