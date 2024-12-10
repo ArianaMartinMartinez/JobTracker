@@ -13,9 +13,11 @@ The same applies for any type of progress you want to add.
 
 ## 💼 Proyect guide
 
-On the home page there is a table with all the offers you have previously inserted (via API).
+On the home page there is a table with all the offers you have previously inserted.
 
 We can see the date when the offer was added, the job title, the company, a link that leads to the offer, if it is 'In progress' of 'Finished' and a button that leads to the detailed view.
+
+At the top of the page we can also see a button that leads to a form to create a new offer.
 
 We also have the date of the last update of the offers, which refers to the date of creation of the last comment that has been added to each one. If we don't have any comments for an offer, instead of the date it will show a message 'There's no progress yet'.
 
@@ -28,6 +30,12 @@ On the page to see the details of an offer, in addition to seeing the data we al
 
 ![Details view](./public/docs/detailsView.png)
 <p align="center"><em>Details view</em></p>
+
+On the page to add a new offer we can see a form with all the required fields to create a new offer; with a 'create' button to send the data and a 'reset' button to clear all the inputs.
+
+When we create a new offer the web redirects us to the home view.
+![Create view](./public/docs/createOfferView.png)
+<p align="center"><em>Create view</em></p>
 
 ## ❓ Installation requierements
 
@@ -160,6 +168,8 @@ As there are two tables in the database, 5 endpoints have been created for each 
 ```
 
 ## 👾 Tests
+
+This project has a **92.8%** of test coverage.
 
 You can try the tests and see the coverage in the terminal using:
 ```
